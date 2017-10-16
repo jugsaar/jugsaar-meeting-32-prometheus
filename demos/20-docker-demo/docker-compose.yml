@@ -1,0 +1,46 @@
+version: "2"
+
+services:
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:v1.8.0
+    volumes:
+      - $PWD/prometheus:/prometheus
+    ports:
+      - "9090:9090"
+    command:
+      - "-config.file=/prometheus/prometheus.yml"
+
+  node-exporter:
+    container_name: node-exporter
+    image: prom/node-exporter:v0.15.0
+    ports:
+      - "9100:9100"
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:4.5.2
+    ports:
+      - "3000:3000"
+    volumes_from: 
+      - grafana-storage
+    environment: 
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
+  
+  grafana-storage:
+    container_name: grafana-storage
+    image: busybox:1.27.2-glibc
+    volumes:
+      - $PWD/grafana:/var/lib/grafana
+
+  cadvisor:
+    container_name: cadvisor
+    image: google/cadvisor:v0.27.1
+    ports:
+      - "9280:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro

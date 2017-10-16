@@ -1,0 +1,7 @@
+ALERT demo
+  IF sum(http_requests_total{job="prometheus"}) > 400
+  FOR 30s
+  ANNOTATIONS {
+      summary = "demo summary",
+      description = "demo description",
+  }
