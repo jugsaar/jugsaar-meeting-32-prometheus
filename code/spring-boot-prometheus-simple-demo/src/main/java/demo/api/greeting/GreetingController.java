@@ -1,6 +1,6 @@
 package demo.api.greeting;
 
-import demo.api.AwkwardWorker;
+import demo.api.HumanWorker;
 import io.prometheus.client.Counter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 class GreetingController {
 
-  private final AwkwardWorker worker;
+  private final HumanWorker worker;
 
   /**
    * Prometheus counter

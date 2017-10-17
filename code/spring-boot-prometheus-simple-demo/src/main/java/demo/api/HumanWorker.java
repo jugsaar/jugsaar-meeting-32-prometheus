@@ -8,11 +8,11 @@ import java.util.concurrent.TimeUnit;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 @Component
-public class AwkwardWorker {
+public class HumanWorker {
 
   public void work() {
 
-    double idea = ThreadLocalRandom.current().nextDouble();
+    double idea = dream();
 
     if (idea < 0.8) {
       think(200, MILLISECONDS);
@@ -27,6 +27,10 @@ public class AwkwardWorker {
     if (idea < 0.95) {
       think(3000, MILLISECONDS);
     }
+  }
+
+  private double dream() {
+    return ThreadLocalRandom.current().nextDouble();
   }
 
   private static void think(long amount, TimeUnit timeUnit) {
