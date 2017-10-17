@@ -26,3 +26,6 @@ bin/
 
 demos/10-simple-demo/prometheus/data/
 demos/20-docker-demo/prometheus/data/
+
+target/
+.mvn/
