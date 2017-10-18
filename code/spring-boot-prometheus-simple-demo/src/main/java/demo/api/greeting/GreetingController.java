@@ -38,7 +38,7 @@ class GreetingController {
   @GetMapping
   Object greet(@RequestParam(defaultValue = "World") String name) {
 
-    // shows up in the /prometheus endpoint
+//    // shows up in the /prometheus endpoint
     GREETINGS_TOTAL.inc();
 
     worker.work();
